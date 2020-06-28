@@ -1,22 +1,21 @@
 package main
 
 import (
-	"fmt"
 	"code.cloudfoundry.org/cli/plugin"
+	"fmt"
 )
 
 type DetailedVersionPlugin struct{}
 
-func (p *DetailedVersionPlugin) Run(cliConnection plugin.CliConnection, args []string){
-	fmt.Printf("Hello World!")
+func (p *DetailedVersionPlugin) Run(cliConnection plugin.CliConnection, args []string) {
 	apiVersion, _ := cliConnection.ApiVersion()
-	fmt.Printf("cf API Version: " + apiVersion)
-	cliVersion, _ := cliConnection.CliCommandWithoutTerminalOutput("version");
-	fmt.Printf("cf CLI Version: " + cliVersion)
+	fmt.Println("cf API Version: " + apiVersion)
+	cliVersion, _ := cliConnection.CliCommandWithoutTerminalOutput("version")
+	fmt.Println("cf CLI Version: " + cliVersion[0])
 	return
 }
 
-func (p *DetailedVersionPlugin) GetMetadata() plugin.PluginMetadata{
+func (p *DetailedVersionPlugin) GetMetadata() plugin.PluginMetadata {
 	return plugin.PluginMetadata{
 		Name: "DetailedVersionPlugin",
 		Version: plugin.VersionType{
