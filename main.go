@@ -1,10 +1,10 @@
 package main
 
 import (
+	api "./api"
+	"code.cloudfoundry.org/cli/plugin"
 	"fmt"
 	"strings"
-
-	"code.cloudfoundry.org/cli/plugin"
 )
 
 type DetailedVersionPlugin struct{}
@@ -16,6 +16,9 @@ func (p *DetailedVersionPlugin) Run(cliConnection plugin.CliConnection, args []s
 	cliFullVersion := strings.Split(cliVersionOutput[0], " ")[2]
 	cliVersion := strings.Split(cliFullVersion, "+")[0]
 	fmt.Println("cf CLI Version: " + cliVersion)
+
+	api.ApiCheck(cliVersion, apiVersion)
+
 	return
 }
 
