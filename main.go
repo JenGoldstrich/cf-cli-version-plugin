@@ -1,8 +1,10 @@
 package main
 
 import (
-	"code.cloudfoundry.org/cli/plugin"
 	"fmt"
+	"strings"
+
+	"code.cloudfoundry.org/cli/plugin"
 )
 
 type DetailedVersionPlugin struct{}
@@ -10,8 +12,10 @@ type DetailedVersionPlugin struct{}
 func (p *DetailedVersionPlugin) Run(cliConnection plugin.CliConnection, args []string) {
 	apiVersion, _ := cliConnection.ApiVersion()
 	fmt.Println("cf API Version: " + apiVersion)
-	cliVersion, _ := cliConnection.CliCommandWithoutTerminalOutput("version")
-	fmt.Println("cf CLI Version: " + cliVersion[0])
+	cliVersionOutput, _ := cliConnection.CliCommandWithoutTerminalOutput("version")
+	cliFullVersion := strings.Split(cliVersionOutput[0], " ")[2]
+	cliVersion := strings.Split(cliFullVersion, "+")[0]
+	fmt.Println("cf CLI Version: " + cliVersion)
 	return
 }
 
