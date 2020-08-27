@@ -17,4 +17,4 @@ To do this for the first time on a machine with go 1.14+ run
 To install this plugin, clone the repo and run make clean build install
 
 # Usage
-cf detailed-version
+cf detailed-version currently just prints api and CLI version, more dynamic checking is WIP
