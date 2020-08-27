@@ -38,7 +38,7 @@ func (p *DetailedVersionPlugin) GetMetadata() plugin.PluginMetadata {
 		Commands: []plugin.Command{
 			{
 				Name:     "detailed-version",
-				HelpText: "Tells you who is cool!",
+				HelpText: "Prints detailed version (api + cli), helps you easily get debug info!",
 				UsageDetails: plugin.Usage{
 					Usage: "cf detailed-version",
 				},
